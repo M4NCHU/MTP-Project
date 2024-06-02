@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="98108b50-e1e5-4af7-809d-daaceae156a4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/src/main/java/demo/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/aws.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/movies.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controller/FilmController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controller/GatunekController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/controller/OcenaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/dto/FilmDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/models/Film.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/models/Gatunek.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/models/Ocena.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/FilmRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/GatunekRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/repository/OcenaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/service/FilmService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/service/GatunekService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/demo/service/OcenaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/dodajFilm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/edytujFilm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/gatunki/lista.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/listaFilmow.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/SpringJPADemoPostgreSQL.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/SpringJPADemoPostgreSQL.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/controller/FilmController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/controller/GatunekController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/controller/OcenaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/dto/FilmDTO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/models/Film.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/models/Gatunek.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/models/Ocena.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/FilmRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/GatunekRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/repository/OcenaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/FilmService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/GatunekService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/demo/service/OcenaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/dodajFilm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/edytujFilm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/gatunki/lista.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/listaFilmow.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2hL9Ct02EhPWXmpdSEjvV1hdhwt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Application.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Projekty/mtp/MTP-Project"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-20.0.2-corretto-20.0.2.1-4caba194b151-5bc9ecd2" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="98108b50-e1e5-4af7-809d-daaceae156a4" name="Changes" comment="" />
+      <created>1717362367608</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1717362367608</updated>
+    </task>
+    <servers />
+  </component>
+</project>

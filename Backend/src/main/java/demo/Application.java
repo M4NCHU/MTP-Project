@@ -33,7 +33,7 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
     @Override
     public void run(String... args) throws Exception {
         // Tworzenie i dodawanie gatunków
-        Gatunek gatunek1 = new Gatunek();
+        /*Gatunek gatunek1 = new Gatunek();
         gatunek1.setNazwa("Komedia");
         gatunek1.setOpis("Filmy pełne humoru");
         gatunekService.save(gatunek1);
@@ -53,18 +53,18 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
         ocena1.setTresc("Świetny film!");
         ocena1.setDataDodania(new Date());
         ocena1.setFilm(film1);
-        ocenaService.save(ocena1);
+        ocenaService.save(ocena1);*/
 
-        System.out.println("Dodano przykładowe dane.");
+        System.out.println("Rozpoczęto działanie.");
     }
 
     @Override
     public void onApplicationEvent(ContextClosedEvent event) {
         System.out.println("Usuwanie przykładowych danych...");
         // Przykładowe czyszczenie danych
-        ocenaService.deleteAll();
+        /*ocenaService.deleteAll();
         filmService.deleteAll();
-        gatunekService.deleteAll();
+        gatunekService.deleteAll();*/
         System.out.println("Usunięto przykładowe dane.");
     }
 }
