@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Film Application</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+</head>
+<body>
+<div id="app"></div>
+
+<script type="text/babel">
+    function App() {
+        const [activeTab, setActiveTab] = React.useState('films');
+
+        function FilmListHook() {
+            const [films, setFilms] = React.useState([]);
+            const [status, setStatus] = React.useState("Loading films...");
+
+            // Function to fetch films from the server
+            async function fetchFilms() {
+                await axios.get('http://localhost:8081/api/filmy')
+                    .then(response => {
+                        setFilms(response.data);
+                        setStatus("Films loaded successfully.");
+                    })
+                    .catch(error => {
+                        setStatus("Failed to load films: " + error);
+                    });
+            }
+
+            React.useEffect(() => {
+                fetchFilms();
+            }, []);
+
+            return (
+                 <div>
+                        <h2>Filmy</h2>
+                        {films.length > 0 ? (
+                            <table className="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tytuł</th>
+                                        <th>Akcje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {films.map(film => (
+                                        <tr key={film.id}>
+                                            <td>{film.tytul}</td>
+                                            <td>
+                                                <button className="btn btn-info btn-sm" onClick={() => editFilm(film.id)}>Edit</button> {/* Edit button */}
+                                                {' '}
+                                                <button className="btn btn-danger btn-sm" onClick={() => deleteFilm(film.id)}>Delete</button> {/* Delete button */}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <p>Nie znaleziono filmow.</p>
+                        )}
+                    </div>
+            );
+        }
+
+        function About() {
+            return (
+                <div>
+                    <h2>To jest apikacja z filmami</h2>
+                    <p>Aplikacja spring boot, react.</p>
+                </div>
+            );
+        }
+
+        return (
+            <div className="container">
+                <h1>Film Application</h1>
+                <ul className="nav nav-tabs">
+                    <li className={activeTab === 'films' ? 'active' : ''}>
+                        <a onClick={() => setActiveTab('films')}>Films</a>
+                    </li>
+                    <li className={activeTab === 'about' ? 'active' : ''}>
+                        <a onClick={() => setActiveTab('about')}>About</a>
+                    </li>
+                </ul>
+                <div>
+                    {activeTab === 'films' && <FilmListHook />}
+                    {activeTab === 'about' && <About />}
+                </div>
+            </div>
+        );
+    }
+
+    const container = document.getElementById('app');
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+</script>
+</body>
+</html>
