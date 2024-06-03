@@ -26,6 +26,10 @@ public class GatunekService {
         return gatunekRepository.save(gatunek);
     }
 
+    public void delete(Gatunek gatunek) {
+        gatunekRepository.delete(gatunek);
+    }
+
     public void deleteById(Long id) {
         gatunekRepository.deleteById(id);
     }

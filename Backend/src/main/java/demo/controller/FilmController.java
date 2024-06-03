@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/filmy")
 public class FilmController {
@@ -34,6 +34,12 @@ public class FilmController {
         return new ResponseEntity<>(filmDTOs, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Film> getFilmDetails(@PathVariable Long id) {
+        Film film = filmService.findById(id).orElse(null);
+        return film != null ? new ResponseEntity<>(film, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @GetMapping("/zapiszFilm")
     public ResponseEntity<Film> showFormForAdd() {
         return new ResponseEntity<>(new Film(), HttpStatus.OK);
@@ -51,11 +57,22 @@ public class FilmController {
         return film != null ? new ResponseEntity<>(film, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/edytujFilm")
-    public ResponseEntity<Film> updateFilm(@RequestBody Film film) {
-        filmService.save(film);
-        return new ResponseEntity<>(film, HttpStatus.OK);
+    @PutMapping("/edytujFilm/{id}")
+    public ResponseEntity<Film> updateFilm(@RequestBody Film film, @PathVariable Long id) {
+        Film existingFilm = filmService.findById(id).orElse(null);
+        if (existingFilm == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        // Uaktualnienie istniejących danych
+        existingFilm.setTytul(film.getTytul());
+        existingFilm.setOpis(film.getOpis());
+        existingFilm.setRokWydania(film.getRokWydania());
+        existingFilm.setDlugosc(film.getDlugosc());
+        // Zapis zmodyfikowanego filmu
+        filmService.save(existingFilm);
+        return new ResponseEntity<>(existingFilm, HttpStatus.OK);
     }
+
 
     @DeleteMapping("/usunFilm/{id}")
     public ResponseEntity<Void> deleteFilm(@PathVariable Long id) {

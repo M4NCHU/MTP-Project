@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/gatunki")
 public class GatunekController {
@@ -15,17 +17,43 @@ public class GatunekController {
     private GatunekService gatunekService;
 
     @GetMapping
-    public ResponseEntity<?> getAllGatunki() {
-        return new ResponseEntity<>(gatunekService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<Gatunek>> getAllGatunki() {
+        List<Gatunek> gatunki = gatunekService.findAll();
+        return new ResponseEntity<>(gatunki, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getGatunekById(@PathVariable Long id) {
-        Gatunek gatunek = gatunekService.findById(id).orElse(null);
-        if (gatunek != null) {
-            return new ResponseEntity<>(gatunek, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<Gatunek> getGatunekById(@PathVariable Long id) {
+        return gatunekService.findById(id)
+                .map(gatunek -> new ResponseEntity<>(gatunek, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping
+    public ResponseEntity<Gatunek> createGatunek(@RequestBody Gatunek gatunek) {
+        Gatunek savedGatunek = gatunekService.save(gatunek);
+        return new ResponseEntity<>(savedGatunek, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Gatunek> updateGatunek(@PathVariable Long id, @RequestBody Gatunek gatunek) {
+        return gatunekService.findById(id)
+                .map(existingGatunek -> {
+                    existingGatunek.setNazwa(gatunek.getNazwa());
+                    existingGatunek.setOpis(gatunek.getOpis());
+                    gatunekService.save(existingGatunek);
+                    return new ResponseEntity<>(existingGatunek, HttpStatus.OK);
+                })
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteGatunek(@PathVariable Long id) {
+        return gatunekService.findById(id)
+                .map(gatunek -> {
+                    gatunekService.delete(gatunek);
+                    return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+                })
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

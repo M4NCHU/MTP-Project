@@ -60,11 +60,7 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
 
     @Override
     public void onApplicationEvent(ContextClosedEvent event) {
-        System.out.println("Usuwanie przykładowych danych...");
-        // Przykładowe czyszczenie danych
-        /*ocenaService.deleteAll();
-        filmService.deleteAll();
-        gatunekService.deleteAll();*/
-        System.out.println("Usunięto przykładowe dane.");
+        
+        System.out.println("Zakończono działanie.");
     }
 }

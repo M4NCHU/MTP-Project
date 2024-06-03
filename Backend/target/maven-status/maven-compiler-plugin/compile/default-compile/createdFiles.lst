@@ -1,3 +1,15 @@
-demo\PersonRepository.class
-demo\Person.class
+demo\service\OcenaService.class
+demo\dto\FilmDTO.class
+demo\repository\OcenaRepository.class
+demo\controller\GatunekController.class
+demo\config\CorsConfig.class
+demo\controller\FilmController.class
+demo\controller\OcenaController.class
+demo\models\Film.class
+demo\models\Ocena.class
 demo\Application.class
+demo\models\Gatunek.class
+demo\service\GatunekService.class
+demo\repository\FilmRepository.class
+demo\repository\GatunekRepository.class
+demo\service\FilmService.class

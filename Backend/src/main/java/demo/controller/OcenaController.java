@@ -19,6 +19,17 @@ public class OcenaController {
         return new ResponseEntity<>(ocenaService.findAll(), HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<Ocena> createOcena(@RequestBody Ocena ocena) {
+        try {
+            Ocena savedOcena = ocenaService.save(ocena);
+            return new ResponseEntity<>(savedOcena, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getOcenaById(@PathVariable Long id) {
         Ocena ocena = ocenaService.findById(id).orElse(null);
