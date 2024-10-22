@@ -13,9 +13,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
 import java.util.Date;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @SpringBootApplication
 public class Application implements CommandLineRunner, ApplicationListener<ContextClosedEvent> {
+
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
     private FilmService filmService;
@@ -32,6 +37,8 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
 
     @Override
     public void run(String... args) throws Exception {
+        logger.info("Rozpoczęto działanie aplikacji.");
+
         // Tworzenie i dodawanie gatunków
         /*Gatunek gatunek1 = new Gatunek();
         gatunek1.setNazwa("Komedia");
@@ -60,7 +67,9 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
 
     @Override
     public void onApplicationEvent(ContextClosedEvent event) {
-        
+
+        logger.info("Zakończono działanie aplikacji.");
+
         System.out.println("Zakończono działanie.");
     }
 }
