@@ -78,3 +78,7 @@
 2024-10-23 00:04:14 INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
 2024-10-23 00:04:14 INFO  demo.controller.FilmController - Otrzymano żądanie POST /api/filmy/zapiszFilm - Zapisywanie nowego filmu: dsf
 2024-10-23 00:04:14 INFO  demo.controller.FilmController - Zapisano nowy film: dsf
+2024-10-23 00:06:15 INFO  demo.Application - Zakończono działanie aplikacji.
+2024-10-23 00:06:15 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-23 00:06:15 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-10-23 00:06:16 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
