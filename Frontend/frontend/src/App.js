@@ -4,7 +4,9 @@ import './App.css';
 import TabButton from './components/TabButton';
 import FilmList from './components/tabs/FilmList';
 import GenreList from './components/tabs/GenreList';
-import logo from "./assets/mina.png"
+
+import LogList from './components/tabs/LogsList';
+import LoginTab from './components/tabs/LoginTab';
 
 
 function App() {
@@ -29,7 +31,11 @@ function App() {
     },
     {
       action: "tab4",
-      title: "Opis"
+      title: "Logi"
+    },
+    {
+      action: "tab5",
+      title: "Logowanie"
     },
   ]
 
@@ -48,8 +54,8 @@ function App() {
       {activeTab === 'tab1' && <FilmList/>}
         {activeTab === 'tab2' && <GenreList/>}
         {activeTab === 'tab3' && <div><h1>Content of Tab 3</h1></div>}
-        {activeTab === 'tab4' && <img src={logo} className='image'  alt="" />
-}
+        {activeTab === 'tab4' && <LogList/>}
+        {activeTab === 'tab5' && <LoginTab/>}
       </div>
       
     </div>

@@ -3,12 +3,11 @@ package demo.controller;
 import demo.dto.FilmDTO;
 import demo.models.Film;
 import demo.service.FilmService;
+import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,14 +16,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/filmy")
 public class FilmController {
 
-    private static final Logger logger = LoggerFactory.getLogger(FilmController.class);
-
     @Autowired
     private FilmService filmService;
 
+    @Autowired
+    private LoggingService loggingService;
+
     @GetMapping
     public ResponseEntity<List<FilmDTO>> getAllFilms() {
-        logger.info("Otrzymano żądanie GET /api/filmy - Pobieranie wszystkich filmów");
+        loggingService.log("INFO", "FilmController", "Pobieranie wszystkich filmów", null);
         List<Film> films = filmService.findAll();
         List<FilmDTO> filmDTOs = films.stream().map(film -> new FilmDTO(
                 film.getId(),
@@ -35,74 +35,72 @@ public class FilmController {
                 film.getPlakatURL(),
                 film.getNazwaGatunku()
         )).collect(Collectors.toList());
-        logger.info("Znaleziono {} filmów", filmDTOs.size());
+        loggingService.log("INFO", "FilmController", "Znaleziono " + filmDTOs.size() + " filmów", null);
         return new ResponseEntity<>(filmDTOs, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Film> getFilmDetails(@PathVariable Long id) {
-        logger.info("Otrzymano żądanie GET /api/filmy/{} - Pobieranie szczegółów filmu", id);
+        loggingService.log("INFO", "FilmController", "Pobieranie szczegółów filmu o ID " + id, null);
         Film film = filmService.findById(id).orElse(null);
         if (film != null) {
-            logger.info("Znaleziono film o ID {}", id);
+            loggingService.log("INFO", "FilmController", "Znaleziono film o ID " + id, null);
             return new ResponseEntity<>(film, HttpStatus.OK);
         } else {
-            logger.warn("Nie znaleziono filmu o ID {}", id);
+            loggingService.log("WARN", "FilmController", "Nie znaleziono filmu o ID " + id, null);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/zapiszFilm")
     public ResponseEntity<Film> showFormForAdd() {
-        logger.info("Otrzymano żądanie GET /api/filmy/zapiszFilm - Wyświetlanie formularza dodawania filmu");
+        loggingService.log("INFO", "FilmController", "Wyświetlanie formularza dodawania filmu", null);
         return new ResponseEntity<>(new Film(), HttpStatus.OK);
     }
 
     @PostMapping("/zapiszFilm")
     public ResponseEntity<Film> saveFilm(@RequestBody Film film) {
-        logger.info("Otrzymano żądanie POST /api/filmy/zapiszFilm - Zapisywanie nowego filmu: {}", film.getTytul());
+        loggingService.log("INFO", "FilmController", "Zapisywanie nowego filmu: " + film.getTytul(), null);
         filmService.save(film);
-        logger.info("Zapisano nowy film: {}", film.getTytul());
+        loggingService.log("INFO", "FilmController", "Zapisano nowy film: " + film.getTytul(), null);
         return new ResponseEntity<>(film, HttpStatus.CREATED);
     }
 
     @GetMapping("/edytujFilm/{id}")
     public ResponseEntity<Film> showFormForUpdate(@PathVariable Long id) {
-        logger.info("Otrzymano żądanie GET /api/filmy/edytujFilm/{} - Pobieranie filmu do edycji", id);
+        loggingService.log("INFO", "FilmController", "Pobieranie filmu o ID " + id + " do edycji", null);
         Film film = filmService.findById(id).orElse(null);
         if (film != null) {
-            logger.info("Znaleziono film o ID {} do edycji", id);
+            loggingService.log("INFO", "FilmController", "Znaleziono film o ID " + id + " do edycji", null);
             return new ResponseEntity<>(film, HttpStatus.OK);
         } else {
-            logger.warn("Nie znaleziono filmu o ID {} do edycji", id);
+            loggingService.log("WARN", "FilmController", "Nie znaleziono filmu o ID " + id + " do edycji", null);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/edytujFilm/{id}")
     public ResponseEntity<Film> updateFilm(@RequestBody Film film, @PathVariable Long id) {
-        logger.info("Otrzymano żądanie PUT /api/filmy/edytujFilm/{} - Aktualizacja filmu", id);
+        loggingService.log("INFO", "FilmController", "Aktualizacja filmu o ID " + id, null);
         Film existingFilm = filmService.findById(id).orElse(null);
         if (existingFilm == null) {
-            logger.warn("Nie znaleziono filmu o ID {} do aktualizacji", id);
+            loggingService.log("WARN", "FilmController", "Nie znaleziono filmu o ID " + id + " do aktualizacji", null);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        // Uaktualnienie istniejących danych
         existingFilm.setTytul(film.getTytul());
         existingFilm.setOpis(film.getOpis());
         existingFilm.setRokWydania(film.getRokWydania());
         existingFilm.setDlugosc(film.getDlugosc());
-        // Zapis zmodyfikowanego filmu
         filmService.save(existingFilm);
-        logger.info("Zaktualizowano film o ID {}", id);
+        loggingService.log("INFO", "FilmController", "Zaktualizowano film o ID " + id, null);
         return new ResponseEntity<>(existingFilm, HttpStatus.OK);
     }
 
     @DeleteMapping("/usunFilm/{id}")
     public ResponseEntity<Void> deleteFilm(@PathVariable Long id) {
-        logger.info("Otrzymano żądanie DELETE /api/filmy/usunFilm/{} - Usuwanie filmu", id);
+        loggingService.log("INFO", "FilmController", "Usuwanie filmu o ID " + id, null);
         filmService.deleteById(id);
-        logger.info("Usunięto film o ID {}", id);
+        loggingService.log("INFO", "FilmController", "Usunięto film o ID " + id, null);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

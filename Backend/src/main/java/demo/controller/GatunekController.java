@@ -2,12 +2,11 @@ package demo.controller;
 
 import demo.models.Gatunek;
 import demo.service.GatunekService;
+import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -15,69 +14,70 @@ import java.util.List;
 @RequestMapping("/api/gatunki")
 public class GatunekController {
 
-    private static final Logger logger = LoggerFactory.getLogger(GatunekController.class);
-
     @Autowired
     private GatunekService gatunekService;
 
+    @Autowired
+    private LoggingService loggingService;
+
     @GetMapping
     public ResponseEntity<List<Gatunek>> getAllGatunki() {
-        logger.info("Otrzymano żądanie GET /api/gatunki - Pobieranie wszystkich gatunków");
+        loggingService.log("INFO", "GatunekController", "Pobieranie wszystkich gatunków", null);
         List<Gatunek> gatunki = gatunekService.findAll();
-        logger.info("Zwrócono {} gatunków", gatunki.size());
+        loggingService.log("INFO", "GatunekController", "Zwrócono " + gatunki.size() + " gatunków", null);
         return new ResponseEntity<>(gatunki, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Gatunek> getGatunekById(@PathVariable Long id) {
-        logger.info("Otrzymano żądanie GET /api/gatunki/{} - Pobieranie szczegółów gatunku", id);
+        loggingService.log("INFO", "GatunekController", "Pobieranie szczegółów gatunku o ID " + id, null);
         return gatunekService.findById(id)
                 .map(gatunek -> {
-                    logger.info("Znaleziono gatunek o ID: {}", id);
+                    loggingService.log("INFO", "GatunekController", "Znaleziono gatunek o ID " + id, null);
                     return new ResponseEntity<>(gatunek, HttpStatus.OK);
                 })
                 .orElseGet(() -> {
-                    logger.warn("Nie znaleziono gatunku o ID: {}", id);
+                    loggingService.log("WARN", "GatunekController", "Nie znaleziono gatunku o ID " + id, null);
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 });
     }
 
     @PostMapping
     public ResponseEntity<Gatunek> createGatunek(@RequestBody Gatunek gatunek) {
-        logger.info("Otrzymano żądanie POST /api/gatunki - Tworzenie nowego gatunku");
+        loggingService.log("INFO", "GatunekController", "Tworzenie nowego gatunku", null);
         Gatunek savedGatunek = gatunekService.save(gatunek);
-        logger.info("Utworzono nowy gatunek o ID: {}", savedGatunek.getId());
+        loggingService.log("INFO", "GatunekController", "Utworzono nowy gatunek o ID " + savedGatunek.getId(), null);
         return new ResponseEntity<>(savedGatunek, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Gatunek> updateGatunek(@PathVariable Long id, @RequestBody Gatunek gatunek) {
-        logger.info("Otrzymano żądanie PUT /api/gatunki/{} - Aktualizacja gatunku", id);
+        loggingService.log("INFO", "GatunekController", "Aktualizacja gatunku o ID " + id, null);
         return gatunekService.findById(id)
                 .map(existingGatunek -> {
                     existingGatunek.setNazwa(gatunek.getNazwa());
                     existingGatunek.setOpis(gatunek.getOpis());
                     gatunekService.save(existingGatunek);
-                    logger.info("Zaktualizowano gatunek o ID: {}", id);
+                    loggingService.log("INFO", "GatunekController", "Zaktualizowano gatunek o ID " + id, null);
                     return new ResponseEntity<>(existingGatunek, HttpStatus.OK);
                 })
                 .orElseGet(() -> {
-                    logger.warn("Nie znaleziono gatunku o ID: {}", id);
+                    loggingService.log("WARN", "GatunekController", "Nie znaleziono gatunku o ID " + id, null);
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 });
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGatunek(@PathVariable Long id) {
-        logger.info("Otrzymano żądanie DELETE /api/gatunki/{} - Usunięcie gatunku", id);
+        loggingService.log("INFO", "GatunekController", "Usuwanie gatunku o ID " + id, null);
         return gatunekService.findById(id)
                 .map(gatunek -> {
                     gatunekService.delete(gatunek);
-                    logger.info("Usunięto gatunek o ID: {}", id);
+                    loggingService.log("INFO", "GatunekController", "Usunięto gatunek o ID " + id, null);
                     return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
                 })
                 .orElseGet(() -> {
-                    logger.warn("Nie znaleziono gatunku o ID: {}", id);
+                    loggingService.log("WARN", "GatunekController", "Nie znaleziono gatunku o ID " + id, null);
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
                 });
     }

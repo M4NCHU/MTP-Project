@@ -3,6 +3,8 @@ package demo;
 import demo.models.Film;
 import demo.models.Gatunek;
 import demo.models.Ocena;
+import demo.models.Role;
+import demo.repository.RoleRepository;
 import demo.service.FilmService;
 import demo.service.GatunekService;
 import demo.service.OcenaService;
@@ -30,6 +32,10 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
 
     @Autowired
     private OcenaService ocenaService;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -61,7 +67,8 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
         ocena1.setDataDodania(new Date());
         ocena1.setFilm(film1);
         ocenaService.save(ocena1);*/
-
+        addRoleIfNotExists("admin");
+        addRoleIfNotExists("user");
         System.out.println("Rozpoczęto działanie.");
     }
 
@@ -71,5 +78,14 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
         logger.info("Zakończono działanie aplikacji.");
 
         System.out.println("Zakończono działanie.");
+    }
+
+    private void addRoleIfNotExists(String roleName) {
+        if (!roleRepository.existsByName(roleName)) {
+            Role role = new Role();
+            role.setName(roleName);
+            roleRepository.save(role);
+            System.out.println("Dodano rolę: " + roleName);
+        }
     }
 }

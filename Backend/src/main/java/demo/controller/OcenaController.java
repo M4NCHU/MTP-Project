@@ -2,50 +2,50 @@ package demo.controller;
 
 import demo.models.Ocena;
 import demo.service.OcenaService;
+import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/oceny")
 public class OcenaController {
 
-    private static final Logger logger = LoggerFactory.getLogger(OcenaController.class);
-
     @Autowired
     private OcenaService ocenaService;
 
+    @Autowired
+    private LoggingService loggingService;
+
     @GetMapping
     public ResponseEntity<?> getAllOceny() {
-        logger.info("Otrzymano żądanie GET /api/oceny - Pobieranie wszystkich ocen");
+        loggingService.log("INFO", "OcenaController", "Pobieranie wszystkich ocen", null);
         return new ResponseEntity<>(ocenaService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Ocena> createOcena(@RequestBody Ocena ocena) {
-        logger.info("Otrzymano żądanie POST /api/oceny - Dodawanie nowej oceny");
+        loggingService.log("INFO", "OcenaController", "Dodawanie nowej oceny", null);
         try {
             Ocena savedOcena = ocenaService.save(ocena);
-            logger.info("Ocena dodana pomyślnie z ID {}", savedOcena.getId());
+            loggingService.log("INFO", "OcenaController", "Ocena dodana pomyślnie z ID " + savedOcena.getId(), null);
             return new ResponseEntity<>(savedOcena, HttpStatus.CREATED);
         } catch (Exception e) {
-            logger.error("Błąd podczas dodawania oceny: {}", e.getMessage());
+            loggingService.log("ERROR", "OcenaController", "Błąd podczas dodawania oceny", e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getOcenaById(@PathVariable Long id) {
-        logger.info("Otrzymano żądanie GET /api/oceny/{} - Pobieranie szczegółów oceny", id);
+        loggingService.log("INFO", "OcenaController", "Pobieranie szczegółów oceny o ID " + id, null);
         Ocena ocena = ocenaService.findById(id).orElse(null);
         if (ocena != null) {
-            logger.info("Ocena o ID {} znaleziona", id);
+            loggingService.log("INFO", "OcenaController", "Ocena o ID " + id + " znaleziona", null);
             return new ResponseEntity<>(ocena, HttpStatus.OK);
         } else {
-            logger.warn("Ocena o ID {} nie znaleziona", id);
+            loggingService.log("WARN", "OcenaController", "Ocena o ID " + id + " nie znaleziona", null);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
