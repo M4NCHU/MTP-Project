@@ -1,6 +1,7 @@
 demo\models\LogEntry.class
 demo\service\OcenaService.class
 demo\repository\OcenaRepository.class
+demo\dto\LoginRequest.class
 demo\service\LoggingService.class
 demo\controller\GatunekController.class
 demo\controller\OcenaController.class
@@ -12,13 +13,19 @@ demo\service\UserService.class
 demo\repository\LogEntryRepository.class
 demo\models\Role.class
 demo\service\GatunekService.class
+demo\dto\RegisterRequest.class
+demo\controller\AuthController.class
 demo\dto\FilmDTO.class
+demo\config\SecurityConfig.class
+demo\service\CustomUserDetailsService.class
 demo\config\CorsConfig.class
 demo\controller\FilmController.class
 demo\Application.class
+demo\repository\RoleRepository.class
 demo\models\Gatunek.class
 demo\controller\LogController.class
 demo\repository\UserRepository.class
+demo\service\JwtService.class
 demo\repository\FilmRepository.class
 demo\repository\GatunekRepository.class
 demo\service\FilmService.class

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"demo.service","l":"FilmService"},{"p":"demo.service","l":"GatunekService"},{"p":"demo.service","l":"JwtService"},{"p":"demo.service","l":"LoggingService"},{"p":"demo.service","l":"OcenaService"},{"p":"demo.service","l":"UserService"}];updateSearchResults();

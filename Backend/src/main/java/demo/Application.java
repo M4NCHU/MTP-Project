@@ -1,23 +1,21 @@
 package demo;
 
-import demo.models.Film;
-import demo.models.Gatunek;
-import demo.models.Ocena;
 import demo.models.Role;
+import demo.models.User;
 import demo.repository.RoleRepository;
-import demo.service.FilmService;
-import demo.service.GatunekService;
-import demo.service.OcenaService;
+import demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextClosedEvent;
-import java.util.Date;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Set;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 @SpringBootApplication
 public class Application implements CommandLineRunner, ApplicationListener<ContextClosedEvent> {
@@ -25,17 +23,13 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Autowired
-    private FilmService filmService;
-
-    @Autowired
-    private GatunekService gatunekService;
-
-    @Autowired
-    private OcenaService ocenaService;
-
-    @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -45,47 +39,56 @@ public class Application implements CommandLineRunner, ApplicationListener<Conte
     public void run(String... args) throws Exception {
         logger.info("Rozpoczęto działanie aplikacji.");
 
-        // Tworzenie i dodawanie gatunków
-        /*Gatunek gatunek1 = new Gatunek();
-        gatunek1.setNazwa("Komedia");
-        gatunek1.setOpis("Filmy pełne humoru");
-        gatunekService.save(gatunek1);
+        // Dodanie ról
+        addRoleIfNotExists("ADMIN");
+        addRoleIfNotExists("USER");
 
-        // Tworzenie i dodawanie filmów
-        Film film1 = new Film();
-        film1.setTytul("Przykładowy film");
-        film1.setOpis("To jest przykład opisu filmu.");
-        film1.setRokWydania(2020);
-        film1.setDlugosc(120);
-        film1.setGatunek(gatunek1);
-        filmService.save(film1);
+        // Dodanie użytkownika admina
+        addAdminUserIfNotExists("admin", "admin123", "ADMIN");
 
-        // Tworzenie i dodawanie ocen
-        Ocena ocena1 = new Ocena();
-        ocena1.setOcena(5);
-        ocena1.setTresc("Świetny film!");
-        ocena1.setDataDodania(new Date());
-        ocena1.setFilm(film1);
-        ocenaService.save(ocena1);*/
-        addRoleIfNotExists("admin");
-        addRoleIfNotExists("user");
-        System.out.println("Rozpoczęto działanie.");
+        logger.info("Aplikacja zainicjalizowana pomyślnie.");
     }
+
 
     @Override
     public void onApplicationEvent(ContextClosedEvent event) {
-
         logger.info("Zakończono działanie aplikacji.");
-
         System.out.println("Zakończono działanie.");
     }
 
-    private void addRoleIfNotExists(String roleName) {
-        if (!roleRepository.existsByName(roleName)) {
-            Role role = new Role();
-            role.setName(roleName);
-            roleRepository.save(role);
-            System.out.println("Dodano rolę: " + roleName);
+    private Role addRoleIfNotExists(String roleName) {
+        return roleRepository.findByName(roleName).orElseGet(() -> {
+            Role newRole = new Role();
+            newRole.setName(roleName);
+            return roleRepository.save(newRole); // Zapisanie nowej roli w bazie danych
+        });
+    }
+
+
+    private void addAdminUserIfNotExists(String username, String password, String roleName) {
+        if (!userRepository.existsByUsername(username)) {
+            // Pobranie roli z bazy danych (zarządzany przez Hibernate)
+            Role role = roleRepository.findByName(roleName)
+                    .orElseThrow(() -> new RuntimeException("Role not found: " + roleName));
+
+            // Odświeżenie encji roli (opcjonalne, dla pewności)
+            role = roleRepository.saveAndFlush(role);
+
+            // Utworzenie użytkownika i przypisanie zarządzanej roli
+            User adminUser = new User();
+            adminUser.setUsername(username);
+            adminUser.setPassword(passwordEncoder.encode(password));
+            adminUser.setRoles(Set.of(role));
+            userRepository.save(adminUser);
+
+            logger.info("Dodano użytkownika: " + username);
+        } else {
+            logger.info("Użytkownik " + username + " już istnieje.");
         }
     }
+
+
+
+
+
 }

@@ -10,7 +10,7 @@ const LoginTab = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8081/api/auth/login", { username, password });
+            const response = await axios.post("https://localhost:8081/api/auth/login", { username, password });
             setToken(response.data.token);
             localStorage.setItem("token", response.data.token);
             setUsername("");
@@ -23,7 +23,7 @@ const LoginTab = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:8081/api/auth/register", { username, password });
+            await axios.post("https://localhost:8081/api/auth/register", { username, password });
             alert("Rejestracja zakończona sukcesem. Możesz się zalogować.");
             setRegisterMode(false);
         } catch (error) {

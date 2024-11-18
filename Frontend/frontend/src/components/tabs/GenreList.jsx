@@ -12,7 +12,7 @@ const GenreList = () => {
     useEffect(() => {
         const fetchGenres = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/api/gatunki');
+                const response = await axios.get('https://localhost:8081/api/gatunki');
                 setGenres(response.data);
             } catch (error) {
                 console.error('There was an error fetching the genres:', error);
@@ -43,11 +43,11 @@ const GenreList = () => {
         try {
             let response;
             if (isEditing) {
-                response = await axios.put(`http://localhost:8081/api/gatunki/${newGenre.id}`, newGenre);
+                response = await axios.put(`https://localhost:8081/api/gatunki/${newGenre.id}`, newGenre);
                 const updatedGenres = genres.map(g => g.id === newGenre.id ? response.data : g);
                 setGenres(updatedGenres);
             } else {
-                response = await axios.post('http://localhost:8081/api/gatunki', newGenre);
+                response = await axios.post('https://localhost:8081/api/gatunki', newGenre);
                 setGenres([...genres, response.data]);
             }
             setShowForm(false);
@@ -60,7 +60,7 @@ const GenreList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8081/api/gatunki/${id}`);
+            await axios.delete(`https://localhost:8081/api/gatunki/${id}`);
             setGenres(genres.filter(genre => genre.id !== id));
         } catch (error) {
             console.error('There was an error deleting the genre:', error);

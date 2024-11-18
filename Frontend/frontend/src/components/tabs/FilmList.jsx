@@ -14,7 +14,7 @@ const FilmList = () => {
     useEffect(() => {
         const fetchFilms = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/api/filmy');
+                const response = await axios.get('https://localhost:8081/api/filmy');
                 setFilms(response.data);
                 const initialRatings = response.data.reduce((acc, film) => ({
                     ...acc,

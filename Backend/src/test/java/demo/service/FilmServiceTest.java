@@ -2,18 +2,18 @@ package demo.service;
 
 import demo.models.Film;
 import demo.repository.FilmRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class FilmServiceTest {
+class FilmServiceTest {
 
     @Mock
     private FilmRepository filmRepository;
@@ -21,39 +21,29 @@ public class FilmServiceTest {
     @InjectMocks
     private FilmService filmService;
 
-    @BeforeEach
-    public void setUp() {
+    public FilmServiceTest() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    public void testFindById() {
-        Long filmId = 1L;
+    void testFindAll() {
         Film film = new Film();
-        film.setId(filmId);
-        film.setTytul("Test Film");
+        when(filmRepository.findAll()).thenReturn(List.of(film));
 
-        when(filmRepository.findById(filmId)).thenReturn(Optional.of(film));
+        List<Film> films = filmService.findAll();
 
-        Optional<Film> foundFilm = filmService.findById(filmId);
-
-        assertEquals(true, foundFilm.isPresent());
-        assertEquals("Test Film", foundFilm.get().getTytul());
-
-        verify(filmRepository, times(1)).findById(filmId);
+        assertEquals(1, films.size());
+        verify(filmRepository, times(1)).findAll();
     }
 
     @Test
-    public void testSave() {
+    void testFindById() {
         Film film = new Film();
-        film.setTytul("New Film");
+        when(filmRepository.findById(1L)).thenReturn(Optional.of(film));
 
-        when(filmRepository.save(film)).thenReturn(film);
+        Optional<Film> result = filmService.findById(1L);
 
-        Film savedFilm = filmService.save(film);
-
-        assertEquals("New Film", savedFilm.getTytul());
-
-        verify(filmRepository, times(1)).save(film);
+        assertEquals(film, result.orElse(null));
+        verify(filmRepository, times(1)).findById(1L);
     }
 }
