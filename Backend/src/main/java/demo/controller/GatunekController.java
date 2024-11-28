@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/gatunki")
+@CrossOrigin(origins = "http://localhost:3000")
 public class GatunekController {
 
     @Autowired

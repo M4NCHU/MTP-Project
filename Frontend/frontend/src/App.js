@@ -7,6 +7,7 @@ import GenreList from './components/tabs/GenreList';
 
 import LogList from './components/tabs/LogsList';
 import LoginTab from './components/tabs/LoginTab';
+import Weather from './components/tabs/Weather';
 
 
 function App() {
@@ -37,6 +38,10 @@ function App() {
       action: "tab5",
       title: "Logowanie"
     },
+    {
+      action: "tab6",
+      title: "Pogoda"
+    },
   ]
 
   return (
@@ -56,6 +61,7 @@ function App() {
         {activeTab === 'tab3' && <div><h1>Content of Tab 3</h1></div>}
         {activeTab === 'tab4' && <LogList/>}
         {activeTab === 'tab5' && <LoginTab/>}
+        {activeTab === 'tab6' && <Weather/>}
       </div>
       
     </div>

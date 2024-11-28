@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/filmy")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FilmController {
 
     @Autowired
