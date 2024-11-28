@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.Gatunek;
-import demo.repository.GatunekRepository;
+import demo.models.postgres.Gatunek;
+import demo.repository.postges.GatunekRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

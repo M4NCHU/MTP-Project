@@ -1,6 +1,6 @@
 package demo.controller;
 
-import demo.models.Gatunek;
+import demo.models.postgres.Gatunek;
 import demo.service.GatunekService;
 import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;

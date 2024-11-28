@@ -1,4 +1,4 @@
-package demo.models;
+package demo.models.postgres;
 
 import jakarta.persistence.*;
 import java.util.Date;

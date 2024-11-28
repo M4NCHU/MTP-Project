@@ -1,6 +1,6 @@
-package demo.repository;
+package demo.repository.postges;
 
-import demo.models.User;
+import demo.models.postgres.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

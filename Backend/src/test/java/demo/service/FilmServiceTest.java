@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.Film;
-import demo.repository.FilmRepository;
+import demo.models.postgres.Film;
+import demo.repository.postges.FilmRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

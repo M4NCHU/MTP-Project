@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.User;
-import demo.repository.UserRepository;
+import demo.models.postgres.User;
+import demo.repository.postges.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

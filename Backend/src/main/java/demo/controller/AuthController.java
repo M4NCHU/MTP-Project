@@ -1,9 +1,9 @@
 package demo.controller;
 
-import demo.models.Role;
-import demo.models.User;
+import demo.models.postgres.Role;
+import demo.models.postgres.User;
 import demo.dto.RegisterRequest;
-import demo.repository.RoleRepository;
+import demo.repository.postges.RoleRepository;
 import demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

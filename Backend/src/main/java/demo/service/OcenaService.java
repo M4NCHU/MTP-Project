@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.Ocena;
-import demo.repository.OcenaRepository;
+import demo.models.postgres.Ocena;
+import demo.repository.postges.OcenaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

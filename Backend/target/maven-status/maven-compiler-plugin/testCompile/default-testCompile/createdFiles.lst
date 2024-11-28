@@ -1,1 +1,5 @@
+demo\service\UserServiceTest.class
+demo\service\GatunekServiceTest.class
 demo\service\FilmServiceTest.class
+demo\service\OcenaServiceTest.class
+demo\service\LoggingServiceTest.class

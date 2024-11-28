@@ -1,4 +1,4 @@
-package demo.models;
+package demo.models.mysql;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;

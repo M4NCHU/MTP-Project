@@ -8,8 +8,10 @@ demo\controller\OcenaController.class
 demo\models\Film.class
 demo\models\Ocena.class
 demo\dto\Log.class
+demo\config\CorsConfig$1.class
 demo\models\User.class
 demo\service\UserService.class
+demo\config\DataInitializer.class
 demo\repository\LogEntryRepository.class
 demo\models\Role.class
 demo\service\GatunekService.class
@@ -17,7 +19,6 @@ demo\dto\RegisterRequest.class
 demo\controller\AuthController.class
 demo\dto\FilmDTO.class
 demo\config\SecurityConfig.class
-demo\service\CustomUserDetailsService.class
 demo\config\CorsConfig.class
 demo\controller\FilmController.class
 demo\Application.class

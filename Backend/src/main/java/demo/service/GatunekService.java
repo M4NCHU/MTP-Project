@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.Gatunek;
-import demo.repository.GatunekRepository;
+import demo.models.postgres.Gatunek;
+import demo.repository.postges.GatunekRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
