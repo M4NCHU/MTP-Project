@@ -1,14 +1,13 @@
 package demo.config;
 
-import demo.models.Role;
-import demo.models.User;
-import demo.repository.RoleRepository;
-import demo.repository.UserRepository;
+import demo.models.postgres.Role;
+import demo.models.postgres.User;
+import demo.repository.postges.RoleRepository;
+import demo.repository.postges.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Optional;
 import java.util.Set;
 
 @Configuration

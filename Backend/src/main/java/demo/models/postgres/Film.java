@@ -1,4 +1,4 @@
-package demo.models;
+package demo.models.postgres;
 
 import jakarta.persistence.Entity;
 
@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Table(name = "film")
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

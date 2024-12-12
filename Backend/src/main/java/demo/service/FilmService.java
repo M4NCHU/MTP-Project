@@ -2,8 +2,8 @@ package demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import demo.models.Film;
-import demo.repository.FilmRepository;
+import demo.models.postgres.Film;
+import demo.repository.postges.FilmRepository;
 
 
 import java.util.List;

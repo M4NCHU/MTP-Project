@@ -1,6 +1,6 @@
 package demo.controller;
 
-import demo.models.LogEntry;
+import demo.models.sqlserver.LogEntry;
 import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

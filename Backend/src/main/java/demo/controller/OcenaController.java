@@ -1,6 +1,6 @@
 package demo.controller;
 
-import demo.models.Ocena;
+import demo.models.postgres.Ocena;
 import demo.service.OcenaService;
 import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;

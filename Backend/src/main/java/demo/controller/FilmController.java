@@ -1,7 +1,7 @@
 package demo.controller;
 
 import demo.dto.FilmDTO;
-import demo.models.Film;
+import demo.models.postgres.Film;
 import demo.service.FilmService;
 import demo.service.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;

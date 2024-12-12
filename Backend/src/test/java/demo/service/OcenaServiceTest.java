@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.Ocena;
-import demo.repository.OcenaRepository;
+import demo.models.postgres.Ocena;
+import demo.repository.postges.OcenaRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

@@ -1,6 +1,8 @@
-package demo.models;
+package demo.models.postgres;
 
+import demo.models.postgres.Film;
 import jakarta.persistence.*;
+
 import java.util.Date;
 
 @Entity
@@ -11,6 +13,8 @@ public class Ocena {
 
     private int ocena;
     private String tresc;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataDodania;
 
     private double wartosc;
@@ -27,11 +31,9 @@ public class Ocena {
         this.wartosc = wartosc;
     }
 
-
     public Long getId() {
         return id;
     }
-
 
     public void setId(Long id) {
         this.id = id;

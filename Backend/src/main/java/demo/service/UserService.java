@@ -1,9 +1,8 @@
 package demo.service;
 
-import demo.models.User;
-import demo.repository.UserRepository;
+import demo.models.postgres.User;
+import demo.repository.postges.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**

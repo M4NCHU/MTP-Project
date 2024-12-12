@@ -1,5 +1,4 @@
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\repository\FilmRepository.java
-C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\service\CustomUserDetailsService.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\config\CorsConfig.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\models\LogEntry.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\service\UserService.java
@@ -20,6 +19,7 @@ C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\models\Ocena.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\service\FilmService.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\controller\OcenaController.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\dto\LoginRequest.java
+C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\config\DataInitializer.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\models\Role.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\Application.java
 C:\Project\MTP\MTP-Project\Backend\src\main\java\demo\repository\GatunekRepository.java

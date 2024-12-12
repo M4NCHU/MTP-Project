@@ -1,6 +1,6 @@
-package demo.repository;
+package demo.repository.sqlserver;
 
-import demo.models.LogEntry;
+import demo.models.sqlserver.LogEntry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

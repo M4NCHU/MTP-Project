@@ -1,9 +1,9 @@
 package demo;
 
-import demo.models.Role;
-import demo.models.User;
-import demo.repository.RoleRepository;
-import demo.repository.UserRepository;
+import demo.models.postgres.Role;
+import demo.models.postgres.User;
+import demo.repository.postges.RoleRepository;
+import demo.repository.postges.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
