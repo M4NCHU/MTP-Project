@@ -1,22 +1,32 @@
-package demo.models.mysql;
+package demo.models.sqlserver;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "log_entry") // Określenie nazwy tabeli w bazie danych
 public class LogEntry {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Użycie strategii odpowiedniej dla SQL Server
     private Long id;
 
+    @Column(nullable = false) // Pole wymagane
     private LocalDateTime timestamp;
+
+    @Column(length = 50)
     private String level;
+
+    @Column(length = 100)
     private String logger;
+
+    @Column(length = 255)
     private String message;
+
+    @Column(length = 500)
     private String exception;
 
-    // Getters and setters
+    // Gettery i settery
     public Long getId() {
         return id;
     }

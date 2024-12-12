@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.mysql.LogEntry;
-import demo.repository.mysql.LogEntryRepository;
+import demo.models.sqlserver.LogEntry;
+import demo.repository.sqlserver.LogEntryRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

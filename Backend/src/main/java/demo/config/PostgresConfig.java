@@ -1,11 +1,11 @@
 package demo.config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = "demo.repository.postgres", // Zmiana tutaj
+        basePackages = "demo.repository.postges",
         entityManagerFactoryRef = "postgresEntityManagerFactory",
         transactionManagerRef = "postgresTransactionManager"
 )
@@ -26,7 +26,13 @@ public class PostgresConfig {
     @Primary
     @Bean(name = "postgresDataSource")
     public DataSource postgresDataSource() {
-        return DataSourceBuilder.create().build();
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/mtp_project");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("admin");
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.addDataSourceProperty("ssl", "false");
+        return dataSource;
     }
 
     @Primary
@@ -35,6 +41,7 @@ public class PostgresConfig {
             EntityManagerFactoryBuilder builder,
             @Qualifier("postgresDataSource") DataSource dataSource,
             JpaProperties jpaProperties) {
+        // Ręczne ustawienie właściwości JPA dla Postgres
         return builder
                 .dataSource(dataSource)
                 .packages("demo.models.postgres")

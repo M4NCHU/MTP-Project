@@ -1,7 +1,7 @@
 package demo.service;
 
-import demo.models.mysql.LogEntry;
-import demo.repository.mysql.LogEntryRepository;
+import demo.models.sqlserver.LogEntry;
+import demo.repository.sqlserver.LogEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
